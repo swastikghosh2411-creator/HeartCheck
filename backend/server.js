@@ -84,9 +84,24 @@ app.post("/api/advice", async (req, res) => {
       });
     }
 
-    return res.status(500).json({
-      error: "Something went wrong while talking to the AI. Please try again."
-    });
+    return res.json({
+  advice: {
+    honestSummary: "The AI service is temporarily unavailable, but here is a basic relationship reflection.",
+    unhealthySigns: [
+      "Repeated poor communication can create emotional confusion.",
+      "If someone keeps dismissing your feelings, that can become unhealthy over time."
+    ],
+    selfReflection: [
+      "Ask yourself if this is a one-time issue or a repeated pattern.",
+      "Check whether you are calmly expressing your needs or reacting from fear."
+    ],
+    boundary: "Set a clear boundary about respectful communication and emotional availability.",
+    suggestedText: "I care about this relationship, but I need us to communicate with basic respect. When something is wrong, I would rather talk calmly than be ignored or hurt.",
+    finalAdvice: "Do not judge the relationship only by promises. Watch whether the behaviour actually changes consistently."
+  },
+  safetyFlags: safetyFlags.length > 0 ? safetyFlags : null,
+  mode
+});
   }
 });
 
